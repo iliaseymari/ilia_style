@@ -27,9 +27,6 @@
 - ⚡ Add JavaScript for a dynamic cart, product filters, or other cool features
 - 🌐 Hook it up to a backend for real-time product data and checkout functionality
 
-## License
-© 2024 ILIA. All rights reserved.
 
----
 
 💖 Crafted with passion by ILIA | Redefining luxury fashion since 2025 💖
