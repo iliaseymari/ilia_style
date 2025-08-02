@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE COUTURE - Luxury Fashion Redefined</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f8f8f8;
+            --accent: #d4af37;
+            --text: #333;
+            --light: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: var(--light);
+            scroll-behavior: auto !important;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Particle System */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 8s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Hero Animations */
+        .hero-bg {
+            background: 
+                radial-gradient(ellipse at center, #1a1a1a 0%, #000000 70%),
+                linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, transparent 30%, rgba(212, 175, 55, 0.05) 70%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 0%, rgba(212, 175, 55, 0.02) 50%, transparent 100%);
+            animation: subtleGoldShimmer 15s ease-in-out infinite;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(45deg, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+                linear-gradient(-45deg, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            opacity: 0.4;
+            animation: subtlePatternMove 25s linear infinite;
+        }
+        
+        @keyframes subtleGoldShimmer {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 0.5; 
+                transform: scale(1.02); 
+            }
+        }
+        
+        @keyframes subtlePatternMove {
+            0% { 
+                transform: translate(0, 0); 
+            }
+            100% { 
+                transform: translate(80px, 80px); 
+            }
+        }
+        
+        .text-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .text-reveal span {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: textReveal 1s ease-out forwards;
+        }
+        
+        @keyframes textReveal {
+            to { transform: translateY(0); }
+        }
+        
+        /* Magnetic Effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* 3D Card Effects */
+        .card-3d {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .card-inner {
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        .card-3d:hover .card-inner {
+            transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+        }
+        
+        /* Parallax Scrolling */
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* Advanced Product Cards */
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.8s ease;
+            z-index: 1;
+        }
+        
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .product-card:hover::after {
+            opacity: 1;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-25px) scale(1.03) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25), 0 0 50px rgba(212, 175, 55, 0.3);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Image Zoom Effect */
+        .image-zoom {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-zoom img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .image-zoom:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Floating Elements */
+        .float-1 { animation: float1 6s ease-in-out infinite; }
+        .float-2 { animation: float2 8s ease-in-out infinite; }
+        .float-3 { animation: float3 10s ease-in-out infinite; }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(-5deg); }
+        }
+        
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-text {
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Style Category Animations */
+        .style-category {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .style-category::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.8), rgba(0, 0, 0, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .style-category:hover::after {
+            opacity: 1;
+        }
+        
+        .style-category:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Cart Animation */
+        .cart-slide {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .cart-slide.active {
+            transform: translateX(0);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+        }
+        
+        .scroll-progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Advanced Hover Effects */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            color: var(--light);
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-luxury:hover::before {
+            left: 0;
+        }
+        
+        .btn-luxury:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-text playfair">ILIA</div>
+    </div>
+    
+    <!-- Particle System -->
+    <div id="particles"></div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scroll-progress"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-light playfair text-black tracking-wider">ILIA</h1>
+                </div>
+                <div class="hidden md:flex space-x-12">
+                    <a href="#home" class="text-gray-800 hover:text-yellow-600 transition-colors font-light tracking-wide">Home</a>
+                    <a href="#collections" class="text-gray-800 hover:text-yellow-600 transition-colors font-light tracking-wide">Collections</a>
+                    <a href="#products" class="text-gray-800 hover:text-yellow-600 transition-colors font-light tracking-wide">Products</a>
+                    <a href="#about" class="text-gray-800 hover:text-yellow-600 transition-colors font-light tracking-wide">About</a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <button class="text-gray-800 hover:text-yellow-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="toggleCart()" class="relative text-gray-800 hover:text-yellow-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-yellow-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="float-1 absolute top-20 left-10 w-32 h-32 bg-yellow-600/10 rounded-full blur-xl"></div>
+            <div class="float-2 absolute bottom-20 right-10 w-48 h-48 bg-yellow-600/5 rounded-full blur-2xl"></div>
+            <div class="float-3 absolute top-1/2 left-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+            <div class="text-reveal mb-8">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-light playfair mb-6">
+                    <span style="animation-delay: 0.1s">LUXURY</span><br>
+                    <span style="animation-delay: 0.3s">REDEFINED</span>
+                </h1>
+            </div>
+            <div class="text-reveal">
+                <p class="text-xl md:text-2xl font-light mb-12 max-w-3xl mx-auto leading-relaxed" style="animation-delay: 0.5s">
+                    <span>Experience the pinnacle of fashion with our exclusive collections crafted for the discerning individual</span>
+                </p>
+            </div>
+            <div class="text-reveal" style="animation-delay: 0.7s">
+                <button onclick="scrollToCollections()" class="btn-luxury px-12 py-4 text-lg font-light tracking-wider magnetic">
+                    <span>EXPLORE COLLECTIONS</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-light playfair text-gray-900 mb-6">Our Collections</h2>
+                <p class="text-xl text-gray-600 font-light max-w-2xl mx-auto">Curated styles that define elegance and sophistication</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="style-category card-3d h-96 rounded-2xl overflow-hidden" onclick="showProducts('old-money')">
+                    <div class="card-inner h-full relative">
+                        <img src="https://ibolak.com/storage/image/2024/11/1731994155-RObIugPhTsjLAkjz.webp" alt="Old Money Style" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-8 text-white">
+                                <h3 class="text-3xl font-light playfair mb-2">Old Money</h3>
+                                <p class="font-light opacity-90">Timeless sophistication</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="style-category card-3d h-96 rounded-2xl overflow-hidden" onclick="showProducts('classic')">
+                    <div class="card-inner h-full relative">
+                        <img src="https://decadenceandvice.com/wp-content/uploads/2019/09/CLASSIC-MEN%E2%80%99S-STYLE-NO.3-4-500x500.jpg" alt="Classic Style" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-8 text-white">
+                                <h3 class="text-3xl font-light playfair mb-2">Classic</h3>
+                                <p class="font-light opacity-90">Eternal elegance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="style-category card-3d h-96 rounded-2xl overflow-hidden" onclick="showProducts('street')">
+                    <div class="card-inner h-full relative">
+                        <img src="https://world-arabia.com/storage/images/uploaded/Zgz2S2Ce4Stz7gx81ilOuuWZL6AsWi57RI7pEYBw.webp" alt="Street Style" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-8 text-white">
+                                <h3 class="text-3xl font-light playfair mb-2">Street</h3>
+                                <p class="font-light opacity-90">Urban sophistication</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="style-category card-3d h-96 rounded-2xl overflow-hidden" onclick="showProducts('sport')">
+                    <div class="card-inner h-full relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXcz74NzxRAQU-VWrG9Y-dla82hjz26M7_Jw&s" alt="Sport Style" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-8 text-white">
+                                <h3 class="text-3xl font-light playfair mb-2">Sport</h3>
+                                <p class="font-light opacity-90">Athletic luxury</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-light playfair text-gray-900 mb-6">Featured Products</h2>
+                <p class="text-xl text-gray-600 font-light max-w-2xl mx-auto">Handpicked pieces from our exclusive collections</p>
+            </div>
+            
+            <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 cart-slide">
+        <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-light playfair">Shopping Cart</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 mb-8">
+                <!-- Cart items will be displayed here -->
+            </div>
+            
+            <div class="border-t pt-6">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xl font-light">Total</span>
+                    <span class="text-2xl font-light playfair">$<span id="cart-total">0.00</span></span>
+                </div>
+                <button onclick="checkout()" class="w-full btn-luxury py-4 text-lg font-light tracking-wider">
+                    CHECKOUT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-2">
+                    <h3 class="text-3xl font-light playfair mb-6">ILIA</h3>
+                    <p class="text-gray-400 font-light leading-relaxed max-w-md">
+                        Crafted by ILIA - Redefining luxury fashion with exclusive collections that embody sophistication and timeless elegance.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-light mb-6 tracking-wide">Collections</h4>
+                    <ul class="space-y-3 text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Old Money</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Classic</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Street</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Sport</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-light mb-6 tracking-wide">Customer Care</h4>
+                    <ul class="space-y-3 text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 font-light">&copy; 2024 ILIA. All rights reserved. Crafted by ILIA.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Advanced product data with real images
+        const products = {
+'old-money': [
+    { 
+        id: 1, 
+        name: 'Classic Linen Blazer', 
+        price: 1299, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrBHL3k336svNvwpObA5nUJSeY4Q9prsc7Wg&s',
+        description: 'Timeless linen blazer tailored for refined taste', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 2, 
+        name: 'Formal Gabardine Trousers', 
+        price: 459, 
+        image: 'https://static3.poszetka.com/hpeciai/85902bba619b6f72b0cb52a6da2ef8bc/eng_pl_Ecru-Wool-Gabardine-Trousers-8384_3.jpg',
+        description: 'Elegant gabardine trousers with structured silhouette', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 3, 
+        name: 'Leather Loafers', 
+        price: 899, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEzsS4_KtnReSTm2276KEM_Eip1k3AdtoNHA&s',
+        description: 'Classic penny loafers crafted in premium leather', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 4, 
+        name: 'Cotton Collared Shirt', 
+        price: 799, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnAvS-9ohnKfYTRtB6FC7U8FLbVZ0mZLaIA&s',
+        description: 'Button-up shirt made of fine cotton with classic collar', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 5, 
+        name: 'Plain Leather Belt', 
+        price: 189, 
+        image: 'data:image/jpeg;base64,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',
+        description: 'Essential leather belt with minimal design', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 6, 
+        name: 'Buttoned Cashmere Cardigan', 
+        price: 649, 
+        image: 'https://assets.maisoncashmere.com/media/catalog/product/m/c/mcm004-men-cashmere-cardigan-sweater-03.jpg',
+        description: 'Soft cashmere cardigan with front buttons', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 7, 
+        name: 'Tweed Waistcoat', 
+        price: 729, 
+        image: 'https://cdn11.bigcommerce.com/s-r7ihm/images/stencil/1280x1280/products/461/9000/brown_wc_1__52455.1604694093.jpg?c=2',
+        description: 'Traditional tweed vest with classic horn buttons', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 8, 
+        name: 'Crew Neck Cashmere Sweater', 
+        price: 389, 
+        image: 'https://mrquintessential.com/wp-content/uploads/2018/09/7-Canyon-Cashmere-Crew-Neck-Sweater-Birch-Grey_0094.jpg',
+        description: 'Refined crew neck sweater in pure cashmere', 
+        brand: 'ILIA'
+    }
+],
+'classic': [
+    { 
+        id: 9, 
+        name: 'Wool Overcoat', 
+        price: 659, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePPzlYWFhTaQg8XFFgGGIZw39IaReTx3APw&s',
+        description: 'Timeless wool overcoat with structured shoulders', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 10, 
+        name: 'Dress Shirt', 
+        price: 429, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVcc_VdiwxWEmHqSgC2_B1PwhFkWqIjDPxnIarzsz0PjBaVWE6vENd2QSEpIQEphGt_BM&usqp=CAU',
+        description: 'Classic formal shirt tailored for sharp looks', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 11, 
+        name: 'Double-Breasted Blazer', 
+        price: 949, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3RBlJCI9V9yQ3WTmdUrx3j58zteGTn68tFw&s',
+        description: 'Elegant blazer with peak lapels and gold buttons', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 12, 
+        name: 'Tailored Suit Pants', 
+        price: 389, 
+        image: 'https://www.brooktaverner.co.uk/media/catalog/product/cache/ac7ff1d745bed6c9eaee1b53e51b2680/c/o/constable_a_1050_web_rt_grey_3__1_8.jpg',
+        description: 'Wool suit trousers with clean creases', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 13, 
+        name: 'Classic Tie', 
+        price: 329, 
+        image: 'https://m.media-amazon.com/images/I/810CZMQtz+L._UY1100_.jpg',
+        description: 'Silk necktie with timeless striped pattern', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 14, 
+        name: 'Buttoned Wool Cardigan', 
+        price: 549, 
+        image: 'https://media.johnlewiscontent.com/i/JohnLewis/009327081?fmt=auto&$background-off-white$',
+        description: 'Classic wool cardigan with button fastening', 
+        brand: 'ILIA'
+    }
+],
+'street': [
+    { 
+        id: 15, 
+        name: 'Oversized Hoodie', 
+        price: 459, 
+        image: 'https://lh6.googleusercontent.com/proxy/Wo8L0JfxCEW4uA6iXOqaugaMXfwPKoz1fLUDxKrFAM_uUpWQ3q6Rld6I3uG1WaSdcO9ATyYZfeerZ84-wnKCAz9YlqE-BiPyIh5Q53TKXvWnLVB1o8glNt54FQfPSkfLlYkWLU4wYfYG',
+        description: 'Relaxed fit hoodie with minimal logo design', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 16, 
+        name: 'Baggy Jeans', 
+        price: 329, 
+        image: 'https://image.hm.com/assets/hm/db/7a/db7a9f1af8e95724761923511936c800315adc6a.jpg?imwidth=1260',
+        description: 'Casual fit jeans with streetwear character', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 17, 
+        name: 'Sport Sneakers', 
+        price: 649, 
+        image: 'https://lh6.googleusercontent.com/proxy/JIWYiJ0SZhI6mfbXMn97hqn4hjTsofMk10vKJHdGhAsngvg0pWj-07bEYneR0fchZFGG8HThHMcRdIoQaoGP0DcwLcqP-oNQAz2Bxvv8-cucNgrQmd2DLHB9LuWYBYqymk4WxSSttt2xV5oyvJ3hHtQMYRY',
+        description: 'Comfortable low-top sneakers for everyday wear', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 18, 
+        name: 'Leather Biker Jacket', 
+        price: 1199, 
+        image: 'https://lh5.googleusercontent.com/proxy/X0BnxLjIDgflsML5w7no15M6CRvJwoNryD6v0ciUmji6gd8I0i56RiNFQv1k0tef7rWYyG1ZAgWd8gPO9qNppSDip6p5Q7n4c32PKJ3FDdCS4bhXZHoLA8JYDtRI41VgSJ4',
+        description: 'Grain leather jacket with zippers and snap collar', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 19, 
+        name: 'Urban Cargo Pants', 
+        price: 289, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmp04kUqHFFQRrYQoM4pv5rOMAvZ1MgCuUQA&s',
+        description: 'Relaxed street-style cargos with functional pockets', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 20, 
+        name: 'Logo Graphic T-Shirt', 
+        price: 149, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTou1de8WmxEVUBGr2vLHFwbvu1vN04BOlBDg&s',
+        description: 'Premium cotton tee with bold graphic logo', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 21, 
+        name: 'Bomber Jacket', 
+        price: 399, 
+        image: 'https://m.media-amazon.com/images/I/61bfFZ3omHL._UY1000_.jpg',
+        description: 'Lightweight bomber jacket with ribbed trims', 
+        brand: 'ILIA'
+    }
+],
+'sport': [
+    { 
+        id: 22, 
+        name: 'Performance Running Shoes', 
+        price: 389, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6ASmtf6NVCzkwNHakWn01bHs24KMoMrzQOg&s',
+        description: 'Breathable lightweight runners for daily training', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 23, 
+        name: 'Athletic Jogger Set', 
+        price: 229, 
+        image: 'https://m.media-amazon.com/images/I/713-2NH0FnL._UY1000_.jpg',
+        description: 'Matching joggers and top in flexible fabric', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 24, 
+        name: 'Lightweight Sports Hoodie', 
+        price: 299, 
+        image: 'https://www.gosupps.com/media/catalog/product/cache/25/image/1500x/040ec09b1e35df139433887a97daa66f/7/1/7158Dsvml5L._AC_UL1500_.jpg',
+        description: 'Moisture-wicking hoodie for workouts or warm-up', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 25, 
+        name: 'Breathable Athletic Shorts', 
+        price: 149, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGv8i_ksnYa9C2uhptBS4tSBvj3f6V-OQVZw&s',
+        description: 'Quick-dry shorts with comfortable waistband', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 26, 
+        name: 'Compression Tights', 
+        price: 189, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT052CMDB7SPlcXYtXrof3gheB9_7NxR5_urg&s',
+        description: 'Fitted running tights with muscle support', 
+        brand: 'ILIA'
+    },
+    { 
+        id: 27, 
+        name: 'Training Tank Top', 
+        price: 89, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3anefGvl_HcGjSUjOhgq32grEDHZmXF4GqA&s',
+        description: 'Breathable tank top ideal for intense workouts', 
+        brand: 'ILIA'
+    }
+]
+
+        };
+
+        let cart = [];
+        let currentStyle = 'old-money';
+
+        // Force page to start at top immediately
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Immediate scroll to top
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force scroll to top again
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }, 0);
+            
+            // Loading animation
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    // Final scroll to top after loading
+                    window.scrollTo(0, 0);
+                }, 500);
+            }, 2000);
+
+            showProducts('old-money');
+            updateCartDisplay();
+            initializeAnimations();
+        });
+
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }, 2000);
+        }
+        
+        createParticles();
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scroll-progress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Magnetic effect for buttons
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        function scrollToCollections() {
+            document.getElementById('collections').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showProducts(style) {
+            currentStyle = style;
+            const container = document.getElementById('products-container');
+            const styleProducts = products[style];
+            
+            container.innerHTML = '';
+            
+            styleProducts.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card rounded-2xl overflow-hidden';
+                productCard.style.animationDelay = `${index * 0.1}s`;
+                
+                productCard.innerHTML = `
+                    <div class="image-zoom">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-80 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 font-light mb-2">${product.brand}</div>
+                        <h3 class="text-xl font-light playfair mb-2">${product.name}</h3>
+                        <p class="text-gray-600 font-light text-sm mb-4">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-light playfair">$${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="btn-luxury px-6 py-2 text-sm font-light tracking-wide">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addToCart(productId) {
+            const product = Object.values(products).flat().find(p => p.id === productId);
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartDisplay();
+                
+                // Success feedback
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = 'ADDED!';
+                button.style.background = 'var(--accent)';
+                button.style.color = 'var(--primary)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.style.color = '';
+                }, 1500);
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = totalPrice.toFixed(2);
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="text-center text-gray-500 font-light py-12">Your cart is empty</div>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h4 class="font-light">${item.name}</h4>
+                            <p class="text-sm text-gray-500">$${item.price}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">-</button>
+                            <span class="w-8 text-center font-light">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">+</button>
+                            <button onclick="removeFromCart(${item.id})" class="ml-2 text-red-500 hover:text-red-700 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            
+            sidebar.classList.toggle('active');
+            
+            if (sidebar.classList.contains('active')) {
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close cart when clicking overlay
+        document.getElementById('cart-overlay').addEventListener('click', toggleCart);
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Thank you for choosing ÉLITE COUTURE!\n\nOrder Summary:\nTotal: $${total.toFixed(2)}\n\nThis is a demo checkout. In a real store, you would be redirected to secure payment processing.`);
+            
+            // Clear cart after checkout
+            cart = [];
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        function initializeAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.product-card, .style-category').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize with old-money products
+        showProducts('old-money');
+        
+        // Additional scroll prevention on window load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }, 100);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968d444d44a09951',t:'MTc1NDEzNDQ3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
