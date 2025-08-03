@@ -237,6 +237,7 @@
         .text-reveal {
             overflow: hidden;
             position: relative;
+            
         }
         
         .text-reveal span {
@@ -253,9 +254,132 @@
         .magnetic {
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-    </style>
+    
+
+.loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+.loading-text {
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+.scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+        }
+
+.scroll-progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+.float-1 { animation: float1 6s ease-in-out infinite; }
+
+.float-2 { animation: float2 8s ease-in-out infinite; }
+
+.float-3 { animation: float3 10s ease-in-out infinite; }
+
+
+
+
+
+
+
+
+
+
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+
+    50% { transform: translateY(-30px) rotate(-5deg); }
+}
+
+
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+
+
+
+@keyframes float1 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(-5deg); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.loading-text {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+
+
+
+
+</style>
 </head>
 <body>
+
+
+
+<!-- Particle System -->
+<div id="particles"></div>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator">
+    <div class="scroll-progress" id="scroll-progress"></div>
+</div>
+
     <!-- Golden Line Animation -->
     <div id="golden-line" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 z-50 transition-all duration-300 ease-out" style="width: 0%;"></div>
     
@@ -872,5 +996,70 @@
         window.addEventListener('scroll', updateScrollProgress);
         window.addEventListener('resize', updateScrollProgress);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96932f77b341dc56',t:'MTc1NDE5NjUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96932f77b341dc56',t:'MTc1NDE5NjUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>
+    // Scroll progress bar
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        document.getElementById("scroll-progress").style.width = scrollPercent + "%";
+    });
+
+    // Loading screen removal
+    window.addEventListener("load", () => {
+
+    // Scroll to top on load
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+        const loading = document.getElementById("loading");
+        if (loading) {
+            loading.style.opacity = "0";
+            setTimeout(() => loading.remove(), 500);
+        }
+    });
+</script>
+
+<footer class="bg-gray-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-2">
+                    <h3 class="text-3xl font-light playfair mb-6">ILIA</h3>
+                    <p class="text-gray-400 font-light leading-relaxed max-w-md">
+                        Crafted by ILIA - Redefining luxury fashion with exclusive collections that embody sophistication and timeless elegance.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-light mb-6 tracking-wide">Collections</h4>
+                    <ul class="space-y-3 text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Old Money</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Classic</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Street</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Sport</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-light mb-6 tracking-wide">Customer Care</h4>
+                    <ul class="space-y-3 text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-yellow-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 font-light">&copy; 2024 ILIA. All rights reserved. Crafted by ILIA.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
 </html>
